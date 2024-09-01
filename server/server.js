@@ -22,8 +22,14 @@ const port = 5000;
 //     next();
 // })
 
+app.use(cors({
+    origin: 'https://course-finder-coral.vercel.app', // Replace with your React app's URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-app.get("/getCiC", cors(), (req, res) => {
+
+app.get("/getCiC", (req, res) => {
 
 
     // Assume fullName is stored in a variable

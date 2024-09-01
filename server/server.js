@@ -95,7 +95,8 @@ app.get("/getCiC", (req, res) => {
     res.send(`${output}`);
 })
 
-app.listen(port, () => {
+// app.listen(port, () => {
 
-    console.log(`Listening on port: ${port}`);
-})
+//     console.log(`Listening on port: ${port}`);
+// })
+module.exports = app;

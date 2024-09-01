@@ -6,24 +6,24 @@ const cors = require('cors');
 const port = 5000;
 
 
-var corsOptions = {
-    origin: ['https://course-finder-coral.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+// var corsOptions = {
+//     origin: ['https://course-finder-coral.vercel.app'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
 
-    res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader("Access-Control-Allow-Origin", "*");
 
-    next();
-})
+//     next();
+// })
 
 
-app.get("/getCiC", (req, res) => {
+app.get("/getCiC", cors(), (req, res) => {
 
 
     // Assume fullName is stored in a variable

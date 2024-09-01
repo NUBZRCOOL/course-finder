@@ -29,7 +29,7 @@ app.get("/getCiC", (req, res) => {
     const fullName = req.query.fullName; // Replace with the actual full name to search
 
     // Read and parse the JSON file
-    const data = fs.readFileSync('./fullclass2028.json');
+    const data = fs.readFileSync(path.resolve(__dirname, "fullclass2028.json"));
     const fullClass = JSON.parse(data);
 
     const listOfCommoners = [];

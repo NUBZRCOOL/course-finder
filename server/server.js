@@ -22,11 +22,11 @@ const port = 5000;
 //     next();
 // })
 
-app.use(cors({
-    origin: 'https://course-finder-api.vercel.app', // Replace with your React app's URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(
+    cors({
+        origin: 'https://course-finder-coral.vercel.app/', // Replace with your React app's URL
+    }
+));
 
 
 app.get("/getCiC", (req, res) => {

@@ -2,8 +2,8 @@
     "version": 2,
     "routes":
         [{
-            "source": "/(.*)",
-            "destination": "/",
+            "src": "/(.*)",
+            "dest": "/",
             "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
             "headers": {
                 "Access-Control-Allow-Origin": "*"

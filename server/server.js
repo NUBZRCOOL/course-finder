@@ -1,13 +1,12 @@
 const express = require('express');
 const fs = require('fs');
-const readline = require('readline-sync');
 const app = express();
 
 const port = 5000;
 
 app.use((req, res, next) => {
 
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "https://course-finder-coral.vercel.app/");
 
     next();
 })

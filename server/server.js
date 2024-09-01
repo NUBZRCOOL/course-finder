@@ -6,7 +6,7 @@ const port = 5000;
 
 app.use((req, res, next) => {
 
-    res.setHeader("Access-Control-Allow-Origin", "https://course-finder-coral.vercel.app/");
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
     next();
 })

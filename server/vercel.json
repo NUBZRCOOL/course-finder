@@ -1,12 +1,10 @@
 {
     "version": 2,
-    "routes":
+    "rewrites":
         [{
-            "src": "/(.*)",
-            "dest": "./server.js",
-            "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-            "headers": {
-                "Access-Control-Allow-Origin": "*"
-            }
+            "source": "/(.*)",
+            "headers": [
+                {"key": "Access-Control-Allow-Origin", "value": "*"}
+            ]
         }]
 }

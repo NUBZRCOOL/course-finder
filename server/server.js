@@ -23,7 +23,7 @@ const port = 5000;
 // })
 
 app.use(cors({
-    origin: 'https://course-finder-coral.vercel.app', // Replace with your React app's URL
+    origin: 'https://course-finder-api.vercel.app', // Replace with your React app's URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));

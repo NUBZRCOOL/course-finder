@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
-const cors = require('cors');
 
 const port = 5000;
 
@@ -21,12 +20,6 @@ const port = 5000;
 
 //     next();
 // })
-
-app.use(
-    cors({
-        origin: 'https://course-finder-coral.vercel.app/', // Replace with your React app's URL
-    }
-));
 
 
 app.get("/getCiC", (req, res) => {

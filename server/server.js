@@ -1,8 +1,17 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
+const cors = require('cors');
 
 const port = 5000;
+
+
+var corsOptions = {
+    origin: 'http://course-finder-coral.vercel.app/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
 

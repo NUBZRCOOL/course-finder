@@ -17,7 +17,7 @@ function App() {
 		});
 
 		fetch(
-			"https://course-finder-api-git-main-nubz-cools-projects.vercel.app/getCiC?" + queryParams.toString(),
+			"https://course-finder-api.vercel.app/getCiC?" + queryParams.toString(),
 			{ method: form.method }
 		)
 		.then(response => response.text())

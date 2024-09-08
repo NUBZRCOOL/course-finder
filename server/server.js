@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 var path = require("path");
+const cors = require('cors');
 const app = express();
 
 const port = 5000;
@@ -15,16 +16,15 @@ const port = 5000;
 
 // app.use(cors(corsOptions));
 
-// app.use((req, res, next) => {
+app.use((req, res, next) => {
 
-//     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
-//     next();
-// })
+    next();
+})
 
 
 app.get("/getCiC", (req, res) => {
-
 
     // Assume fullName is stored in a variable
     const fullName = req.query.fullName; // Replace with the actual full name to search
@@ -36,13 +36,14 @@ app.get("/getCiC", (req, res) => {
     const listOfCommoners = [];
 
     // Find the user by full name
-    const user = fullClass.find(person => person.name.trim() === fullName.trim());
+    const user = fullClass.find(person => person.name.trim().toLowerCase() === fullName.trim().toLowerCase());
 
     if (!user) {
-        console.log(`User with name ${fullName} not found.`);
-        res.send(`User with name ${fullName} not found.`);
-        // process.exit(1);
-        return;
+        console.log(`User with name "${fullName}" not found.`);
+        return res.json({
+            message: `User with name "${fullName}" not found.`,
+            commoners: []
+        });
     }
 
     // Extract user courses
@@ -55,10 +56,10 @@ app.get("/getCiC", (req, res) => {
         if (person.name.trim() === user.name.trim()) continue; // Skip the user themselves
 
         const personCourses = new Set(person.periods.map(period => period.courseName));
-        
+
         // Find intersection of courses
         const commonCourses = [...userCourses].filter(course => personCourses.has(course));
-        
+
         if (commonCourses.length > 0) {
             person.count = commonCourses.length;
             listOfCommoners.push(person);
@@ -83,28 +84,19 @@ app.get("/getCiC", (req, res) => {
     // Sort commoners by count in descending order
     commoners.sort((a, b) => b.count - a.count);
 
-    // // Store the output in a string variable
-    // let output = `List of course commoners for: ${user.name}\n`;
-    // if (foundCommoners) {
-    //     commoners.forEach(person => {
-    //         output += `Admin:(${person.isAdmin}) ${person.name}: \n\tShared Courses: ${person.count}\n`;
-    //     });
-    // } else {
-    //     output += 'No commoners found.\n';
-    // }
+    // Build the JSON response
+    const jsonResponse = {
+        message: `List of course commoners for: ${user.name}`,
+        commoners: commoners.map(person => ({
+            name: person.name,
+            isAdmin: person.isAdmin,
+            sharedCourses: person.count
+        }))
+    };
 
-    let output = `List of course commoners for: ${user.name}<br>`;
-    if (foundCommoners) {
-        commoners.forEach(person => {
-            output += `Admin:(${person.isAdmin}) ${person.name}: <br>\tShared Courses: ${person.count}<br>`;
-        });
-    } else {
-        output += 'No commoners found.<br>';
-    }
-
-    
-    res.send(`${output}`);
-})
+    // Send the JSON response
+    res.json(jsonResponse);
+});
 
 // app.listen(port, () => {
 

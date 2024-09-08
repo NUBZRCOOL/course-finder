@@ -1,0 +1,56 @@
+body {
+    background-color: rgb(208, 255, 255);
+    text-align: center;
+}
+
+#formDiv {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 1%;
+    border: black solid;
+    border-radius: 5px;
+}
+
+ul {
+    display: inline;
+}
+
+button[type=submit] {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00bc10;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button[type=submit] span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+button[type=submit] span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+button[type=submit]:hover span {
+    padding-right: 25px;
+}
+  
+button[type=submit]:hover span:after {
+    opacity: 1;
+    right: 0;
+}
